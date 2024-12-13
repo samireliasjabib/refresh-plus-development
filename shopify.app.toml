@@ -1,0 +1,32 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "8a42646a7660a2742f5f9dd59d516155"
+application_url = "https://synthetic-leaf-internal-oz.trycloudflare.com"
+embedded = true
+name = "refresh-plus-development"
+handle = "refresh-plus-development"
+
+[webhooks]
+api_version = "2024-10"
+
+  [[webhooks.subscriptions]]
+  topics = [ "app/uninstalled" ]
+  uri = "/webhooks/app/uninstalled"
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products"
+
+[auth]
+redirect_urls = [
+  "https://synthetic-leaf-internal-oz.trycloudflare.com/auth/callback",
+  "https://synthetic-leaf-internal-oz.trycloudflare.com/auth/shopify/callback",
+  "https://synthetic-leaf-internal-oz.trycloudflare.com/api/auth/callback"
+]
+
+[pos]
+embedded = false
+
+[build]
+dev_store_url = "testing-app-samir.myshopify.com"
+automatically_update_urls_on_dev = true
