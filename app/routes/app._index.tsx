@@ -15,6 +15,7 @@ import {
 } from "@shopify/polaris";
 import { TitleBar, useAppBridge } from "@shopify/app-bridge-react";
 import { authenticate } from "../shopify.server";
+import { useTranslation } from "react-i18next";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   await authenticate.admin(request);
@@ -95,20 +96,21 @@ export default function Index() {
   const fetcher = useFetcher<typeof action>();
 
   const shopify = useAppBridge();
-  const isLoading =
-    ["loading", "submitting"].includes(fetcher.state) &&
-    fetcher.formMethod === "POST";
-  const productId = fetcher.data?.product?.id.replace(
-    "gid://shopify/Product/",
-    "",
-  );
+  // const isLoading =
+  //   ["loading", "submitting"].includes(fetcher.state) &&
+  //   fetcher.formMethod === "POST";
+  // const productId = fetcher.data?.product?.id.replace(
+  //   "gid://shopify/Product/",
+  //   "",
+  // );
 
-  useEffect(() => {
-    if (productId) {
-      shopify.toast.show("Product created");
-    }
-  }, [productId, shopify]);
+  // useEffect(() => {
+  //   if (productId) {
+  //     shopify.toast.show("Product created");
+  //   }
+  // }, [productId, shopify]);
   const generateProduct = () => fetcher.submit({}, { method: "POST" });
+  let { t } = useTranslation();
 
   return (
     <Page>
@@ -118,7 +120,8 @@ export default function Index() {
         </button>
       </TitleBar>
       <BlockStack gap="500">
-        <Layout>
+      <h1>{t("greeting")}</h1>
+        {/* <Layout>
           <Layout.Section>
             <Card>
               <BlockStack gap="500">
@@ -327,7 +330,7 @@ export default function Index() {
               </Card>
             </BlockStack>
           </Layout.Section>
-        </Layout>
+        </Layout> */}
       </BlockStack>
     </Page>
   );
