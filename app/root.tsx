@@ -13,7 +13,6 @@ import { useTranslation } from "react-i18next";
 import i18next from "./i18next.sever";
 import { LoaderFunctionArgs } from "@remix-run/node";
 
-
 export async function loader({ request }: LoaderFunctionArgs) {
   let locale = await i18next.getLocale(request);
   return json({ locale });
@@ -27,20 +26,17 @@ export let handle = {
   i18n: "common",
 };
 
-
-
 export default function App() {
-    // Get the locale from the loader
-    let { locale } = useLoaderData<typeof loader>();
+  // Get the locale from the loader
+  let { locale } = useLoaderData<typeof loader>();
 
-    let { i18n } = useTranslation();
+  let { i18n } = useTranslation();
 
-    // This hook will change the i18n instance language to the current locale
-    // detected by the loader, this way, when we do something to change the
-    // language, this locale will change and i18next will load the correct
-    // translation files
-    useChangeLanguage(locale);
-
+  // This hook will change the i18n instance language to the current locale
+  // detected by the loader, this way, when we do something to change the
+  // language, this locale will change and i18next will load the correct
+  // translation files
+  useChangeLanguage(locale);
 
   return (
     <html lang={locale} dir={i18n.dir()}>

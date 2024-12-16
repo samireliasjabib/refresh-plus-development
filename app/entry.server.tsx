@@ -1,4 +1,3 @@
-
 import { PassThrough } from "stream";
 import { renderToPipeableStream } from "react-dom/server";
 import { RemixServer } from "@remix-run/react";
@@ -15,26 +14,23 @@ import { createInstance } from "i18next";
 import { resolve } from "node:path";
 import i18next from "./i18next.sever";
 
-
 export const streamTimeout = 5000;
 
 export default async function handleRequest(
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
-  remixContext: EntryContext
+  remixContext: EntryContext,
 ) {
   addDocumentResponseHeaders(request, responseHeaders);
   const userAgent = request.headers.get("user-agent");
-  const callbackName = isbot(userAgent ?? '')
-    ? "onAllReady"
-    : "onShellReady";
+  const callbackName = isbot(userAgent ?? "") ? "onAllReady" : "onShellReady";
 
-    let instance = createInstance();
-    let lng = await i18next.getLocale(request);
-    let ns = i18next.getRouteNamespaces(remixContext);
-  
-    await instance
+  let instance = createInstance();
+  let lng = await i18next.getLocale(request);
+  let ns = i18next.getRouteNamespaces(remixContext);
+
+  await instance
     .use(initReactI18next) // Tell our instance to use react-i18next
     .use(Backend) // Setup our backend
     .init({
@@ -42,41 +38,41 @@ export default async function handleRequest(
       lng, // The locale we detected above
       ns, // The namespaces the routes about to render wants to use
       backend: { loadPath: resolve("./public/locales/{{lng}}/{{ns}}.json") },
-    })
-    
-    return new Promise((resolve, reject) => {
-      let didError = false;
-  
-      let { pipe, abort } = renderToPipeableStream(
-        <I18nextProvider i18n={instance}>
-          <RemixServer context={remixContext} url={request.url} />
-        </I18nextProvider>,
-        {
-          [callbackName]: () => {
-            let body = new PassThrough();
-            const stream = createReadableStreamFromReadable(body);
-            responseHeaders.set("Content-Type", "text/html");
-  
-            resolve(
-              new Response(stream, {
-                headers: responseHeaders,
-                status: didError ? 500 : responseStatusCode,
-              })
-            );
-  
-            pipe(body);
-          },
-          onShellError(error: unknown) {
-            reject(error);
-          },
-          onError(error: unknown) {
-            didError = true;
-  
-            console.error(error);
-          },
-        }
-      );
-  
-      setTimeout(abort, streamTimeout);
     });
+
+  return new Promise((resolve, reject) => {
+    let didError = false;
+
+    let { pipe, abort } = renderToPipeableStream(
+      <I18nextProvider i18n={instance}>
+        <RemixServer context={remixContext} url={request.url} />
+      </I18nextProvider>,
+      {
+        [callbackName]: () => {
+          let body = new PassThrough();
+          const stream = createReadableStreamFromReadable(body);
+          responseHeaders.set("Content-Type", "text/html");
+
+          resolve(
+            new Response(stream, {
+              headers: responseHeaders,
+              status: didError ? 500 : responseStatusCode,
+            }),
+          );
+
+          pipe(body);
+        },
+        onShellError(error: unknown) {
+          reject(error);
+        },
+        onError(error: unknown) {
+          didError = true;
+
+          console.error(error);
+        },
+      },
+    );
+
+    setTimeout(abort, streamTimeout);
+  });
 }
