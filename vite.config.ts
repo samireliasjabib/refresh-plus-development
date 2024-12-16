@@ -60,6 +60,7 @@ export default defineConfig({
     }),
     tsconfigPaths(),
   ],
+  optimizeDeps: { esbuildOptions: { target: "esnext" } }, // <-- Set this to resolve issue.
   build: {
     assetsInlineLimit: 0,
   },
