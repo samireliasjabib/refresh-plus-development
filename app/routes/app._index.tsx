@@ -5,12 +5,15 @@ import HardRefreshCard from "app/components/dashboard/HardRefreshCard";
 import HowItWorks from "app/components/dashboard/HowItWorks";
 import RefreshDataTable from "app/components/dashboard/RefreshDataTable";
 import RefreshHeader from "app/components/shared/RefreshHeader";
+import FeatureRequest from "app/components/dashboard/FeatureRequest";
 
 export default function Index() {
   return (
     <Page>
       <Layout>
-        <RefreshHeader />
+        <Layout.Section>
+          <RefreshHeader />
+        </Layout.Section>
 
         <Layout.Section>
           <RefreshStatusCard status={"success"} />
@@ -26,6 +29,10 @@ export default function Index() {
 
         <Layout.Section>
           <HowItWorks />
+        </Layout.Section>
+
+        <Layout.Section>
+          <FeatureRequest />
         </Layout.Section>
       </Layout>
     </Page>
