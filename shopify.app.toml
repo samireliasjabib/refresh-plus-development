@@ -1,7 +1,7 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "8a42646a7660a2742f5f9dd59d516155"
-application_url = "https://resources-american-soundtrack-border.trycloudflare.com"
+application_url = "https://establishing-pulse-sa-costs.trycloudflare.com"
 embedded = true
 name = "refresh-plus-development"
 handle = "refresh-plus-development"
@@ -23,9 +23,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://resources-american-soundtrack-border.trycloudflare.com/auth/callback",
-  "https://resources-american-soundtrack-border.trycloudflare.com/auth/shopify/callback",
-  "https://resources-american-soundtrack-border.trycloudflare.com/api/auth/callback"
+  "https://establishing-pulse-sa-costs.trycloudflare.com/auth/callback",
+  "https://establishing-pulse-sa-costs.trycloudflare.com/auth/shopify/callback",
+  "https://establishing-pulse-sa-costs.trycloudflare.com/api/auth/callback"
 ]
 
 [pos]

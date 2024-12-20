@@ -4,8 +4,8 @@ import RefreshPlusLogo from "../../assets/Refresh_Plus_logo.png";
 
 const RefreshHeader = () => {
   return (
-    <Layout.Section>
-      <InlineStack align="space-between" blockAlign="center">
+      <Box paddingBlockEnd={{ xs: "600", md: "1000" }}>   
+        <InlineStack align="space-between" blockAlign="center">
         <Image src={RefreshPlusLogo} alt="Logo" source={RefreshPlusLogo} />
         <Box>
           <InlineStack blockAlign="center">
@@ -15,7 +15,7 @@ const RefreshHeader = () => {
           </InlineStack>
         </Box>
       </InlineStack>
-    </Layout.Section>
+      </Box>
   );
 };
 
