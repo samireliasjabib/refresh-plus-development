@@ -31,3 +31,53 @@ model Session {
   collaborator  Boolean?  @default(false)
   emailVerified Boolean?  @default(false)
 }
+
+model Store {
+  id             String    @id @default(cuid())
+  shop           String    @unique
+  accessToken    String
+  plan           PlanType  // Use enum for predefined plans
+  isActive       Boolean   @default(true)
+  shopifyPlan    ShopifyPlanType // Enum for Shopify plans
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  activityLogs   ActivityLog[]
+}
+
+model ActivityLog {
+  id            String       @id @default(cuid())
+  storeId       String
+  timestamp     DateTime     @default(now())
+  action        ActionType   @default(MANUAL_REFRESH) // Enum for actions
+  status        StatusType   @default(SUCCESS) // Enum for status
+  fee           Float        @default(0.0) // Cost of the action
+  details       String?
+
+  store         Store        @relation(fields: [storeId], references: [id])
+
+  @@index([storeId], map: "idx_storeId")
+  @@index([timestamp], map: "idx_timestamp")
+}
+
+// Enums for predefined values
+enum ActionType {
+  MANUAL_REFRESH
+  OTHER
+}
+
+enum StatusType {
+  SUCCESS
+  FAILURE
+}
+
+enum PlanType {
+  ON_DEMAND_REFRESH
+  UNLIMITED_REFRESH
+}
+
+enum ShopifyPlanType {
+  BASIC
+  STANDARD
+  ADVANCED
+  PLUS
+}
