@@ -13,7 +13,7 @@ const GridHeader: React.FC<GridHeaderProps> = ({ title, description }) => (
       </Text>
     </Box>
     <Box paddingBlockEnd="600">
-      <Text as="p" variant="bodyMd" fontWeight="regular" tone='subdued'>
+      <Text as="p" variant="bodyMd" fontWeight="regular" tone="subdued">
         {description}
       </Text>
     </Box>

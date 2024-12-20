@@ -1,5 +1,5 @@
-import { Box, ProgressBar } from "@shopify/polaris";
-import React from "react";
+import { Box, ProgressBar } from '@shopify/polaris';
+import React from 'react';
 
 const RefreshLoadingbar = () => {
   return (

@@ -6,11 +6,11 @@ import {
   Page,
   Text,
   TextField,
-} from "@shopify/polaris";
-import { useState } from "react";
+} from '@shopify/polaris';
+import { useState } from 'react';
 
 const FeatureRequest = () => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
 
   return (
     <Box>
@@ -21,23 +21,22 @@ const FeatureRequest = () => {
           </Text>
           <InlineStack gap="200">
             <TextField
-              label='feature request'
+              label="feature request"
               role="textbox"
               size="slim"
               labelHidden
               type="text"
               placeholder="Tell us more about your idea"
               value={value}
-              onChange={ ( value ) => setValue( value ) }
+              onChange={(value) => setValue(value)}
               autoComplete="off"
             />
             <Button variant="primary">Submit</Button>
           </InlineStack>
-
         </InlineStack>
       </Card>
     </Box>
   );
 };
 
-export default FeatureRequest
+export default FeatureRequest;

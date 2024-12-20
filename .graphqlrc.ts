@@ -1,7 +1,7 @@
-import fs from "fs";
-import { LATEST_API_VERSION } from "@shopify/shopify-api";
-import { shopifyApiProject, ApiType } from "@shopify/api-codegen-preset";
-import type { IGraphQLConfig } from "graphql-config";
+import fs from 'fs';
+import { LATEST_API_VERSION } from '@shopify/shopify-api';
+import { shopifyApiProject, ApiType } from '@shopify/api-codegen-preset';
+import type { IGraphQLConfig } from 'graphql-config';
 
 function getConfig() {
   const config: IGraphQLConfig = {
@@ -10,17 +10,17 @@ function getConfig() {
         apiType: ApiType.Admin,
         apiVersion: LATEST_API_VERSION,
         documents: [
-          "./app/**/*.{js,ts,jsx,tsx}",
-          "./app/.server/**/*.{js,ts,jsx,tsx}",
+          './app/**/*.{js,ts,jsx,tsx}',
+          './app/.server/**/*.{js,ts,jsx,tsx}',
         ],
-        outputDir: "./app/types",
+        outputDir: './app/types',
       }),
     },
   };
 
   let extensions: string[] = [];
   try {
-    extensions = fs.readdirSync("./extensions");
+    extensions = fs.readdirSync('./extensions');
   } catch {
     // ignore if no extensions
   }

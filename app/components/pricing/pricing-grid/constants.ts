@@ -1,6 +1,7 @@
 export const PRICING_GRID_CONTENT = {
   title: 'Pricing plans',
-  description: 'Choose the plan that best fits your needs. All plans include access to our core features.',
+  description:
+    'Choose the plan that best fits your needs. All plans include access to our core features.',
 } as const;
 
 export const DEFAULT_GRID_CONFIG = {

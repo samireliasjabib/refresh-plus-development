@@ -1,16 +1,12 @@
-
-import WarningStatusCard from "./components/WarningStatusCard";
-import CriticalStatusCard from "./components/CriticalStatusCard";
-import SuccessStatusCard from "./components/SuccessStatusCard";
-
-
+import WarningStatusCard from './components/WarningStatusCard';
+import CriticalStatusCard from './components/CriticalStatusCard';
+import SuccessStatusCard from './components/SuccessStatusCard';
 
 const RefreshStatusCard = ({
   status,
 }: {
-  status: "warning" | "critical" | "success";
+  status: 'warning' | 'critical' | 'success';
 }) => {
-  
   const statusComponents = {
     warning: <WarningStatusCard />,
     critical: <CriticalStatusCard />,

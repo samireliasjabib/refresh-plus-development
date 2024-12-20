@@ -1,5 +1,5 @@
-import { Modal, TextContainer } from "@shopify/polaris";
-import React, { ReactElement } from "react";
+import { Modal, TextContainer } from '@shopify/polaris';
+import React, { ReactElement } from 'react';
 
 // Define the props interface
 interface VideoModalProps {

@@ -6,12 +6,12 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData,
-} from "@remix-run/react";
+} from '@remix-run/react';
 
-import { useChangeLanguage } from "remix-i18next/react";
-import { useTranslation } from "react-i18next";
-import i18next from "./i18next.sever";
-import { LoaderFunctionArgs } from "@remix-run/node";
+import { useChangeLanguage } from 'remix-i18next/react';
+import { useTranslation } from 'react-i18next';
+import i18next from './i18next.sever';
+import { LoaderFunctionArgs } from '@remix-run/node';
 
 export async function loader({ request }: LoaderFunctionArgs) {
   let locale = await i18next.getLocale(request);
@@ -23,7 +23,7 @@ export let handle = {
   // will need to load. This key can be a single string or an array of strings.
   // TIP: In most cases, you should set this to your defaultNS from your i18n config
   // or if you did not set one, set it to the i18next default namespace "translation"
-  i18n: "common",
+  i18n: 'common',
 };
 
 export default function App() {

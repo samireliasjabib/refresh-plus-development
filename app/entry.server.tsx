@@ -1,18 +1,18 @@
-import { PassThrough } from "stream";
-import { renderToPipeableStream } from "react-dom/server";
-import { RemixServer } from "@remix-run/react";
+import { PassThrough } from 'stream';
+import { renderToPipeableStream } from 'react-dom/server';
+import { RemixServer } from '@remix-run/react';
 import {
   createReadableStreamFromReadable,
   type EntryContext,
-} from "@remix-run/node";
-import { isbot } from "isbot";
-import { addDocumentResponseHeaders } from "./shopify.server";
-import { I18nextProvider, initReactI18next } from "react-i18next";
-import Backend from "i18next-fs-backend";
-import i18n from "./i18n"; // your i18n configuration file
-import { createInstance } from "i18next";
-import { resolve } from "node:path";
-import i18next from "./i18next.sever";
+} from '@remix-run/node';
+import { isbot } from 'isbot';
+import { addDocumentResponseHeaders } from './shopify.server';
+import { I18nextProvider, initReactI18next } from 'react-i18next';
+import Backend from 'i18next-fs-backend';
+import i18n from './i18n'; // your i18n configuration file
+import { createInstance } from 'i18next';
+import { resolve } from 'node:path';
+import i18next from './i18next.sever';
 
 export const streamTimeout = 5000;
 
@@ -20,11 +20,11 @@ export default async function handleRequest(
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
-  remixContext: EntryContext,
+  remixContext: EntryContext
 ) {
   addDocumentResponseHeaders(request, responseHeaders);
-  const userAgent = request.headers.get("user-agent");
-  const callbackName = isbot(userAgent ?? "") ? "onAllReady" : "onShellReady";
+  const userAgent = request.headers.get('user-agent');
+  const callbackName = isbot(userAgent ?? '') ? 'onAllReady' : 'onShellReady';
 
   let instance = createInstance();
   let lng = await i18next.getLocale(request);
@@ -37,7 +37,7 @@ export default async function handleRequest(
       ...i18n, // spread the configuration
       lng, // The locale we detected above
       ns, // The namespaces the routes about to render wants to use
-      backend: { loadPath: resolve("./public/locales/{{lng}}/{{ns}}.json") },
+      backend: { loadPath: resolve('./public/locales/{{lng}}/{{ns}}.json') },
     });
 
   return new Promise((resolve, reject) => {
@@ -51,13 +51,13 @@ export default async function handleRequest(
         [callbackName]: () => {
           let body = new PassThrough();
           const stream = createReadableStreamFromReadable(body);
-          responseHeaders.set("Content-Type", "text/html");
+          responseHeaders.set('Content-Type', 'text/html');
 
           resolve(
             new Response(stream, {
               headers: responseHeaders,
               status: didError ? 500 : responseStatusCode,
-            }),
+            })
           );
 
           pipe(body);
@@ -70,7 +70,7 @@ export default async function handleRequest(
 
           console.error(error);
         },
-      },
+      }
     );
 
     setTimeout(abort, streamTimeout);

@@ -19,7 +19,7 @@ const PlanGrid: React.FC<PlanGridProps> = ({
   onSelectPlan,
   columns = { xs: 1, sm: 1, lg: 2, xl: 2 },
 }) => (
-  <InlineGrid gap={{ xs: '200', md: '500' }}columns={columns}>
+  <InlineGrid gap={{ xs: '200', md: '500' }} columns={columns}>
     {plans.map((plan, index) => (
       <PricingCard key={plan.title} plan={plan} onSelectPlan={onSelectPlan} />
     ))}

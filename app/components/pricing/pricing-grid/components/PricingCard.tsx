@@ -7,7 +7,8 @@ interface PricingCardProps {
 }
 
 const PricingCard: React.FC<PricingCardProps> = ({ plan, onSelectPlan }) => {
-  const { icon, title, content, priceTitle, price, buttonText, isCurrentPlan } = plan;
+  const { icon, title, content, priceTitle, price, buttonText, isCurrentPlan } =
+    plan;
 
   return (
     <Box>
@@ -15,7 +16,7 @@ const PricingCard: React.FC<PricingCardProps> = ({ plan, onSelectPlan }) => {
         <InlineStack wrap={false} gap={{ xs: '300', md: '400' }}>
           <Box>
             <Card>
-              <Icon source={icon} accessibilityLabel='icon-pricing'/>
+              <Icon source={icon} accessibilityLabel="icon-pricing" />
             </Card>
           </Box>
           <Box>
@@ -26,7 +27,12 @@ const PricingCard: React.FC<PricingCardProps> = ({ plan, onSelectPlan }) => {
               {content}
             </Text>
             <Box paddingBlockStart="400" paddingBlockEnd="600">
-              <Text as="h2" variant="headingSm" fontWeight="regular" tone='subdued'>
+              <Text
+                as="h2"
+                variant="headingSm"
+                fontWeight="regular"
+                tone="subdued"
+              >
                 {priceTitle}
               </Text>
               <Text as="p" variant="bodyLg" fontWeight="semibold">
@@ -35,17 +41,17 @@ const PricingCard: React.FC<PricingCardProps> = ({ plan, onSelectPlan }) => {
             </Box>
           </Box>
         </InlineStack>
-          <Box>
-            <Button
-              disabled={isCurrentPlan}
-              fullWidth
-              size='large'
-              variant={isCurrentPlan ? 'secondary' : 'primary'}
-              onClick={() => onSelectPlan(plan)}
-            >
-              {buttonText}
-            </Button>
-          </Box>
+        <Box>
+          <Button
+            disabled={isCurrentPlan}
+            fullWidth
+            size="large"
+            variant={isCurrentPlan ? 'secondary' : 'primary'}
+            onClick={() => onSelectPlan(plan)}
+          >
+            {buttonText}
+          </Button>
+        </Box>
       </Card>
     </Box>
   );
