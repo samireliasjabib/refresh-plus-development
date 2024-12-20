@@ -50,9 +50,9 @@ model ActivityLog {
   timestamp     DateTime     @default(now())
   action        ActionType   @default(MANUAL_REFRESH) // Enum for actions
   status        StatusType   @default(SUCCESS) // Enum for status
-  fee           Float        @default(0.0) // Cost of the action
+  fee           Float        @default(0.0) // Use float for fees
   details       String?
-
+  plan          PlanType     @default(ON_DEMAND_REFRESH)
   store         Store        @relation(fields: [storeId], references: [id])
 
   @@index([storeId], map: "idx_storeId")
