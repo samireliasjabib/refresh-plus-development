@@ -8,7 +8,7 @@ import RefreshHeader from "app/components/shared/RefreshHeader";
 import FeatureRequest from "app/components/dashboard/feature-request/FeatureRequest";
 import ArticGreyMarkWater from "app/components/shared/ArticGreyMarkWater";
 
-export default function Index() {
+export default function Dashboard() {
   return (
     <Page>
       <Layout>
