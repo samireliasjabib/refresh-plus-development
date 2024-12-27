@@ -17,7 +17,7 @@ export default function Index() {
         </Layout.Section>
         <Layout.Section>
           <BlockStack gap="500">
-            <RefreshStatusCard status={'warning'} />
+            <RefreshStatusCard status={'critical'} />
             <HardRefreshCard />
             <RefreshDataTable />
             <HowItWorks />

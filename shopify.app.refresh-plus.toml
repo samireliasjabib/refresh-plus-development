@@ -1,0 +1,29 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "fdcc881702cabbf1b4040291ab51eb39"
+application_url = "https://implement-databases-dimension-geneva.trycloudflare.com"
+embedded = true
+name = "refresh-plus"
+handle = "refresh-plus-1"
+
+[build]
+include_config_on_deploy = true
+dev_store_url = "testing-app-samir.myshopify.com"
+automatically_update_urls_on_dev = true
+
+[webhooks]
+api_version = "2024-10"
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "read_themes,write_themes"
+
+[auth]
+redirect_urls = [
+  "https://implement-databases-dimension-geneva.trycloudflare.com/auth/callback",
+  "https://implement-databases-dimension-geneva.trycloudflare.com/auth/shopify/callback",
+  "https://implement-databases-dimension-geneva.trycloudflare.com/api/auth/callback"
+]
+
+[pos]
+embedded = false
